@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-// ✅ Create a New Task (Protected)
+// create a new task 
 router.post('/', authMiddleware, async (req, res) => {
     try {
         const { title, description } = req.body;
@@ -17,7 +17,7 @@ router.post('/', authMiddleware, async (req, res) => {
     }
 });
 
-// ✅ Get All Tasks for Logged-in User (Protected)
+// get all tasks for logged-in user
 router.get('/', authMiddleware, async (req, res) => {
     try {
         const tasks = await Task.find({ user: req.user });
@@ -27,7 +27,7 @@ router.get('/', authMiddleware, async (req, res) => {
     }
 });
 
-// ✅ Update a Task (Protected)
+// update a task 
 router.put('/:id', authMiddleware, async (req, res) => {
     try {
         const task = await Task.findById(req.params.id);
@@ -47,7 +47,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
     }
 });
 
-// ✅ Delete a Task (Protected)
+// delete a task 
 router.delete('/:id', authMiddleware, async (req, res) => {
     try {
         const task = await Task.findById(req.params.id);
@@ -61,6 +61,11 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server Error' });
     }
+});
+
+// protected route to test authentication
+router.get('/protected', authMiddleware, (req, res) => {
+    res.json({ message: 'Welcome! You are authorized.', user: req.user });
 });
 
 module.exports = router;
