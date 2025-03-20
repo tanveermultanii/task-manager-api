@@ -11,22 +11,22 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 
-// Routes
+// routes
 app.use('/api/auth', authRoutes);
-app.use('/api/tasks', taskRoutes); // ✅ Protect task routes
+app.use('/api/tasks', taskRoutes); 
 
 app.get('/', (req, res) => {
     res.send('Task Manager API is running!');
 });
 
-// Connect to MongoDB
+// connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
-        console.log('✅ Connected to MongoDB');
+        console.log('Connected to MongoDB');
         app.listen(PORT, () => {
-            console.log(`🚀 Server running on port ${PORT}`);
+            console.log(`Server running on port ${PORT}`);
         });
     })
     .catch((err) => {
-        console.error('❌ MongoDB Connection Error:', err.message);
+        console.error('MongoDB Connection Error:', err.message);
     });
