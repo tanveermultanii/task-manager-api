@@ -153,4 +153,5 @@ curl -X POST https://task-manager-api-4ka0.onrender.com/api/tasks \
 
 ## License
 This project is licensed under the **MIT License**.
-- You are free to use, modify, and distribute this project under the license terms.
+You are free to **use, modify, and distribute** this project under the license terms.
+For more details, see the [LICENSE](LICENSE) file or read the full MIT License [here](https://opensource.org/licenses/MIT).
